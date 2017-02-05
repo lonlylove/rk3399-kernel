@@ -1,0 +1,150 @@
+/* static struct idle_state idle_states_cluster_a53[] = { */
+/*        { .power = 56 }, /\* arch_cpu_idle() (active idle) = WFI *\/ */
+/*        { .power = 56 }, /\* WFI *\/ */
+/*        { .power = 56 }, /\* cpu-sleep-0 *\/ */
+/* }; */
+
+/* static struct idle_state idle_states_cluster_a72[] = { */
+/*        { .power = 65 }, /\* arch_cpu_idle() (active idle) = WFI *\/ */
+/*        { .power = 65 }, /\* WFI *\/ */
+/*        { .power = 65 }, /\* cpu-sleep-0 *\/ */
+/* }; */
+
+/* static struct capacity_state cap_states_cluster_a53[] = { */
+/*         /\* Power per cluster *\/ */
+/*        { .cap =  121, .power = 26, }, /\*  408 MHz *\/ */
+/*        { .cap =  179, .power = 30, }, /\*  600 MHz *\/ */
+/*        { .cap =  243, .power = 39, }, /\*  816 MHz *\/ */
+/*        { .cap =  300, .power = 47, }, /\*  1008 MHz *\/ */
+/*        { .cap =  357, .power = 57, }, /\*  1200 Mhz *\/ */
+/*        { .cap =  421, .power = 67, }, /\*  1416 Mhz *\/ */
+/* }; */
+
+/* static struct capacity_state cap_states_cluster_a72[] = { */
+/*         /\* Power per cluster *\/ */
+/*        { .cap =  232, .power = 24, }, /\*  408 MHz *\/ */
+/*        { .cap =  341, .power = 32, }, /\*  600 MHz *\/ */
+/*        { .cap =  464, .power = 43, }, /\*  816 MHz *\/ */
+/*        { .cap =  573, .power = 49, }, /\* 1008 MHz *\/ */
+/*        { .cap =  683, .power = 64, }, /\* 1200 MHz *\/ */
+/*        { .cap =  805, .power = 74, }, /\* 1416 MHz *\/ */
+/*        { .cap =  915, .power = 84, }, /\* 1608 MHz *\/ */
+/*        { .cap = 1024, .power = 94, }, /\* 1800 MHz *\/ */
+/* }; */
+
+/* static struct sched_group_energy energy_cluster_a53 = { */
+/*        .nr_idle_states = ARRAY_SIZE(idle_states_cluster_a53), */
+/*        .idle_states    = idle_states_cluster_a53, */
+/*        .nr_cap_states  = ARRAY_SIZE(cap_states_cluster_a53), */
+/*        .cap_states     = cap_states_cluster_a53, */
+/* }; */
+
+/* static struct sched_group_energy energy_cluster_a57 = { */
+/*        .nr_idle_states = ARRAY_SIZE(idle_states_cluster_a72), */
+/*        .idle_states    = idle_states_cluster_a72, */
+/*        .nr_cap_states  = ARRAY_SIZE(cap_states_cluster_a72), */
+/*        .cap_states     = cap_states_cluster_a72, */
+/* }; */
+
+/* static struct idle_state idle_states_core_a53[] = { */
+/*        { .power = 6 }, /\* arch_cpu_idle() (active idle) = WFI *\/ */
+/*        { .power = 6 }, /\* WFI *\/ */
+/*        { .power = 0 }, /\* cpu-sleep-0 *\/ */
+/* }; */
+
+/* static struct idle_state idle_states_core_a72[] = { */
+/*        { .power = 15 }, /\* arch_cpu_idle() (active idle) = WFI *\/ */
+/*        { .power = 15 }, /\* WFI *\/ */
+/*        { .power = 0  }, /\* cpu-sleep-0 *\/ */
+/* }; */
+
+/* static struct capacity_state cap_states_core_a53[] = { */
+/*         /\* Power per cpu *\/ */
+/*        { .cap =  121, .power = 40, }, /\*  408 MHz *\/ */
+/*        { .cap =  179, .power = 62, }, /\*  600 MHz *\/ */
+/*        { .cap =  243, .power = 90, }, /\*  816 MHz *\/ */
+/*        { .cap =  300, .power = 126, }, /\*  1008 MHz *\/ */
+/*        { .cap =  357, .power = 196, }, /\*  1200 Mhz *\/ */
+/*        { .cap =  421, .power = 246, }, /\*  1416 Mhz *\/ */
+/* }; */
+
+/* static struct capacity_state cap_states_core_a72[] = { */
+/*         /\* Power per cpu *\/ */
+/*        { .cap =  232, .power =  349, }, /\*  408 MHz *\/ */
+/*        { .cap =  341, .power =  547, }, /\*  600 MHz *\/ */
+/*        { .cap =  464, .power =  794, }, /\*  816 MHz *\/ */
+/*        { .cap =  573, .power = 1141, }, /\* 1008 MHz *\/ */
+/*        { .cap =  683, .power = 1850, }, /\* 1200 MHz *\/ */
+/*        { .cap =  805, .power = 2499, }, /\* 1416 MHz *\/ */
+/*        { .cap =  915, .power = 2922, }, /\* 1608 MHz *\/ */
+/*        { .cap = 1024, .power = 3416, }, /\* 1800 MHz *\/ */
+/* }; */
+
+energy-costs {
+	CPU_COST_A72: core-cost0 {
+		busy-cost-data = <
+			232   349	/*  408MHz */
+			341   547	/*  600MHz */
+			464   794	/*  816MHz */
+			573   1141	/* 1008MHz */
+			683   1850	/* 1200MHz */
+		//	805   2499	/* 1416MHz */
+		//	915   2922	/* 1608MHz */
+		//	1024  3416	/* 1800MHz */
+		>;
+		idle-cost-data = <
+		      15
+		      15
+		       0
+		>;
+	};
+	CPU_COST_A53: core-cost1 {
+		busy-cost-data = <
+			121    40	/*  408M */
+			179    62	/*  600M */
+			243    90	/*  816M */
+			300    126	/* 1008M */
+			357    196	/* 1200M */
+			421    246	/* 1416M */
+		//	449    263	/* 1512M */
+		>;
+		idle-cost-data = <
+		      6
+		      6
+		      0
+		>;
+	};
+	CLUSTER_COST_A72: cluster-cost0 {
+		busy-cost-data = <
+			232   349	/*  408MHz */
+			341   547	/*  600MHz */
+			464   794	/*  816MHz */
+			573   1141	/* 1008MHz */
+			683   1850	/* 1200MHz */
+		//	805   2499	/* 1416MHz */
+		//	915   2922	/* 1608MHz */
+		//	1024  3416	/* 1800MHz */
+		>;
+		idle-cost-data = <
+			 65
+			 65
+			 65
+		>;
+	};
+	CLUSTER_COST_A53: cluster-cost1 {
+		busy-cost-data = <
+			121    40	/*  408M */
+			179    62	/*  600M */
+			243    90	/*  816M */
+			300    126	/* 1008M */
+			357    196	/* 1200M */
+			421    246	/* 1416M */
+		//	449    263	/* 1512M */
+		>;
+		idle-cost-data = <
+			56
+			56
+			56
+		>;
+	};
+};
